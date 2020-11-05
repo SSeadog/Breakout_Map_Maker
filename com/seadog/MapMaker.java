@@ -71,8 +71,3 @@ public class MapMaker extends JFrame {
     }
 
 }
-
-// Breakout에서 Brick들을 생성할 때 필요한 정보는 총 브릭의 개수, 각 브릭의 위치가 있으면 될듯
-// 배열을 생성해서 각 항마다 좌표를 주면 해결될 듯
-
-// 맵 생성시에는?
