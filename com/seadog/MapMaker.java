@@ -3,8 +3,13 @@ package com.seadog;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class MapMaker extends JFrame {
+    int[][] Bricks = new int[100][2];
+    int cur = -1;
+
     public MapMaker() {
         setTitle("맵 만들기");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,6 +42,20 @@ public class MapMaker extends JFrame {
 
             add(new Brick(x, y));
             repaint();
+
+            if (cur == 9) {
+                System.out.println("Writing");
+                try {
+                    FileWriter fw = new FileWriter("Bricks.txt");
+                    for (int b = 0; b < 10; b++) {
+                        fw.write(Bricks[b][0] + "," + Bricks[b][1] + "\n");
+                    }
+                    fw.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                System.out.println("Writing End");
+            }
         }
     }
 
@@ -45,6 +64,9 @@ public class MapMaker extends JFrame {
             setText("Brick");
             setSize(40, 10);
             setLocation(x, y);
+            cur++;
+            Bricks[cur][0] = x;
+            Bricks[cur][1] = y;
         }
     }
 
